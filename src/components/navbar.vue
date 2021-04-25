@@ -26,7 +26,7 @@
       </ul>
     </div>
     <div>
-      <form @submit="search(state.query)">
+      <form @submit.prevent="search(state.query)">
         <input type="text" placeholder="Search..." v-model="state.query">
       </form>
     </div>
