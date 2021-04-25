@@ -59,13 +59,6 @@ export default {
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }
-      },
-      async lastPage(url) {
-        try {
-          await postService.getAll(url)
-        } catch (error) {
-          Notification.toast('Error: ' + error, 'error')
-        }
       }
     }
   }
