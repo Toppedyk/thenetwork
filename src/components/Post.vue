@@ -5,7 +5,7 @@
         <router-link :to="{name: 'ProfilePage', params:{id: post.creator.id}}">
           <div class="d-flex" @click="setActive(post.creator.id)">
             <img :src="post.creator.picture" alt="" class="small-img rounded-circle mr-3">
-            <h5 class="card-title">
+            <h5 class="card-title" @click="setActive(post.creator.id)">
               {{ post.creator.name }}
             </h5>
           </div>

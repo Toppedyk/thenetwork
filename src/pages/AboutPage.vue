@@ -1,5 +1,8 @@
 <template>
-  <div class="about flex-grow-1">
+  <div v-if="state.loading=false">
+    Loading...
+  </div>
+  <div class="about flex-grow-1" v-else>
     <div class="row">
       <div class="col-12 col-md-3 ">
         <AccountSummary />
@@ -32,6 +35,7 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
+      loading: true,
       posts: computed(() => AppState.searchPosts),
       profiles: computed(() => AppState.searchProfiles),
       markets: computed(() => AppState.market),
@@ -42,6 +46,7 @@ export default {
       try {
         await postService.getAll()
         await marketService.getAll()
+        state.loading = false
       } catch (error) {
         Notification.toast('Error: ' + error, 'error')
       }
