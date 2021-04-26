@@ -1,26 +1,26 @@
 <template>
-  <div class="accountSummary mt-2">
-    <div class="mb-3" v-if="user.isAuthenticated">
-      <router-link :to="{name: 'ProfilePage', params:{id: state.account.id}}">
-        <img :src="state.account.picture" class="rounded-circle small-img" alt="" @click="setActive(state.account.id)">
-      </router-link>
+  <div class="card bg-dark text-light mt-2" v-if="user.isAuthenticated">
+    <div class="accountSummary mt-2">
+      <div class="mb-3 text-center">
+        <router-link :to="{name: 'ProfilePage', params:{id: state.account.id}}">
+          <img :src="state.account.picture" class="rounded-circle small-img" alt="" @click="setActive(state.account.id)">
+        </router-link>
+      </div>
     </div>
-  </div>
-  <div v-if="user.isAuthenticated">
-    <h5>{{ state.account.name }}</h5>
-    <ul>
-      <li>
-        {{ state.account.email }}
-      </li>
-      <li v-if="state.account.github">
-        {{ state.account.github }}
-      </li>
-      <li v-if="state.account.linkedin">
-        {{ state.account.linkedin }}
-      </li>
-    </ul>
-    <div class="mb-2">
-      <button type="button" class="btn btn-dark" @click="state.edit = true" v-if="state.edit===false">
+    <div v-if="user.isAuthenticated" class="text-center">
+      <h5>{{ state.account.name }}</h5>
+      <i class="fas fa-user-graduate" v-if=" state.account.graduated===true"></i>
+      <ul>
+        <li>
+          <i class="fas fa-envelope-open-text w-100" v-if="state.account.email">{{ state.account.email }}</i>
+        </li>
+        <i class="fab fa-github m-2" v-if="state.account.github">{{ state.account.github }}</i>
+        <i class="fab fa-linkedin m-2" v-if="state.account.linkedin">{{ state.account.linkedin }}</i>
+        <i class="far fa-file-alt m-2" v-if="state.account.resume">{{ state.account.resume }}</i>
+      </ul>
+    </div>
+    <div class="mb-2" v-if="user.isAuthenticated">
+      <button type="button" class="btn btn-dark ml-1" @click="state.edit = true" v-if="state.edit===false">
         Edit Profile
       </button>
       <form v-else @submit.prevent="editProfile">
@@ -60,9 +60,9 @@
     </div>
   </div>
   <div>
-    <span class="navbar-text">
+    <span class="navbar-text w-100 p-0">
       <button
-        class="btn btn-outline-primary text-uppercase"
+        class="btn btn-success"
         @click="login"
         v-if="!user.isAuthenticated"
       >
@@ -71,14 +71,14 @@
 
       <div class="dropdown" v-else>
         <div
-          class="dropdown-toggle"
+          class="dropdown-toggle bg-light m-1 rounded-pill"
           @click="state.dropOpen = !state.dropOpen"
         >
           <img
             :src="user.picture"
             alt="user photo"
-            height="40"
-            class="rounded"
+            height="30"
+            class="rounded-circle"
           />
           <span class="mx-3">{{ user.name }}</span>
         </div>
@@ -168,5 +168,10 @@ export default {
 .dropdown-menu.show {
   transform: scale(1);
 }
-
+ul{
+  list-style-type: none;
+  padding: .5em;
+  margin: 0;
+  margin-left: 1em;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="market my-2">
-    <img :src="market.tall" alt="" class="w-100">
+    <img :src="market.square" alt="" class="w-100">
   </div>
 </template>
 

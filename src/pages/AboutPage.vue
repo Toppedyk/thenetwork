@@ -7,13 +7,19 @@
       <div class="col-12 col-md-3 ">
         <AccountSummary />
       </div>
-      <div class="col-12 col-md-6">
-        <h1 class="text-center">
+      <div class="col-12 col-md-6 scroll">
+        <h1 class="text-center" v-if="state.posts.length>0">
           Posts
         </h1>
+        <h1 v-else>
+          No posts match that search...
+        </h1>
         <Post v-for="post in state.posts" :key="post.id" :post="post" />
-        <h1 class="text-center">
+        <h1 class="text-center" v-if="state.profiles.length>0">
           Profiles
+        </h1>
+        <h1 v-else>
+          No profiles match that search...
         </h1>
         <Profile v-for="profile in state.profiles" :key="profile.id" :profile="profile" />
       </div>
@@ -71,3 +77,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+.scroll{
+  height: 80vh;
+  overflow-y:auto;
+}
+h1{
+  font-size: 1em;
+}
+</style>

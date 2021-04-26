@@ -2,12 +2,12 @@
   <div v-if="state.loading">
     Loading...
   </div>
-  <div class="home flex-grow-1" v-else>
+  <div class="home flex-grow-1 " v-else>
     <div class="row">
-      <div class="col-12 col-md-3 ">
+      <div class="col-12 col-md-3  ">
         <AccountSummary />
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 scroll">
         <Post v-for="post in state.posts" :key="post.id" :post="post" />
         <div class="d-flex justify-content-around">
           <button type="button" class="btn btn-secondary" v-if="state.newer" @click="nextPage(state.newer)">
@@ -74,4 +74,10 @@ export default {
     width: 200px;
   }
 }
+
+.scroll{
+  height: 80vh;
+  overflow-y:auto;
+}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="Post col">
-    <div class="card">
+  <div class="Post col my-2 shadow p-0 ">
+    <div class="card bg-light">
       <div class="card-body">
         <router-link :to="{name: 'ProfilePage', params:{id: post.creator.id}}">
           <div class="d-flex" @click="setActive(post.creator.id)">
@@ -96,6 +96,11 @@ export default {
 
 .card{
   position: relative;
+}
+
+img{
+  object-fit: center cover;
+  max-height: 15em;
 }
 
 </style>

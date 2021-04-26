@@ -7,7 +7,31 @@
       <div class="col-12 col-md-3">
         <AccountSummary />
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 scroll">
+        <div class="card w-100 bg-light">
+          <img :src="state.activeProfile.coverImg" class="card-img-top head-img" alt="..." v-if="state.activeProfile.coverImg">
+          <img src="https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg" class="card-img-top head-img img-fluid" alt="..." v-else>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">
+                <img :src="state.activeProfile.picture" class="rounded-circle small-img">
+                {{ state.activeProfile.name }}
+                <i class="fas fa-user-graduate" v-if=" state.activeProfile.graduated===true"></i>
+              </h5>
+              <div>
+                <i class="fab fa-github m-2" v-if="state.activeProfile.github"></i>
+                <i class="fab fa-linkedin m-2" v-if="state.activeProfile.linkedin"></i>
+                <i class="far fa-file-alt m-2" v-if="state.activeProfile.resume"></i>
+              </div>
+            </div>
+            <div v-if="state.activeProfile.class">
+              <h6>{{ state.activeProfile.class }}</h6>
+            </div>
+            <p class="card-text" v-if="state.activeProfile.bio">
+              {{ state.activeProfile.bio }}
+            </p>
+          </div>
+        </div>
         <div class="card text-center" v-if="state.user.isAuthenticated && state.activeProfile.id === state.account._id">
           <div class="card-body">
             <form @submit.prevent="create">
@@ -98,5 +122,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.head-img{
+  max-height: 10em;
+  object-fit: cover;
+}
 
+.scroll{
+  height: 80vh;
+  overflow-y:auto;
+}
+
+.small-img{
+  height:2em;
+  width: 2em;
+  object-fit: cover;
+}
 </style>
